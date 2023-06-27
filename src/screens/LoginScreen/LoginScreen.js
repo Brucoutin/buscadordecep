@@ -8,7 +8,7 @@ import {
     View,
     Dimensions,
 } from 'react-native';
-import location from "../Assets/Jpg/location.png"
+import localizacao from "../Assets/Jpg/localizacao.png"
 import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 import { useNavigation } from '@react-navigation/native';
@@ -28,7 +28,7 @@ const LoginScreen = () => {
             </View>
 
             <Image
-                source={location}
+                source={localizacao}
                 style={[styles.logo, { height: height * 0.6, }]}
                 resizeMode="contain"
             />
