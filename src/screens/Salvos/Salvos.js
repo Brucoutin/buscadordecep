@@ -37,7 +37,7 @@ function Salvos() {
         key={item => item.id}
         renderItem={({ item }) => {
           return (
-            <TouchableOpacity style={styles.card}>
+            <View style={styles.card}>
               <View style={styles.cardBody}>
                 <Text style={styles.textCep}>{item.cep_cep}</Text>
                 <Text style={styles.address}>{item.id_logradouro}</Text>
@@ -46,12 +46,12 @@ function Salvos() {
                 <Text style={styles.textCard}>{item.id_bairro}</Text>
                 <Text style={styles.textCard}>{item.id_complemento}</Text>
               </View>
-              <View style={styles.cardFooter}>
+              <View style={styles.Footer}>
                 <TouchableOpacity onPress={() => deletar_id(item.id_cep)}>
-                <MaterialCommunityIcons name="trash-can-outline" size={20} color="#00008b" />
+                <MaterialCommunityIcons name="trash-can-outline" size={20} color="#FF0000" />
                 </TouchableOpacity>
               </View>
-            </TouchableOpacity>
+            </View>
           )
         }}
       />

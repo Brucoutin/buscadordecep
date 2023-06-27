@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
       marginBottom: 5,
       color: 'black'
     },
-    cardFooter: {
+     Footer: {
       padding: 10,
       flexDirection: 'row',
       borderTopWidth: 1,

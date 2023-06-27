@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   txtNames: {
     left: '6%',
     marginTop: '5%',
-    color: 'black',
+    color: '#05811a',
     fontWeight: 'bold',
   },
   Input: {
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   btnMapa: {
     width: '70%',
     height: '8%',
-    backgroundColor: '#020035',
+    backgroundColor: '#05811a',
     borderRadius: 50,
     alignSelf: 'center',
     marginTop: '3%',

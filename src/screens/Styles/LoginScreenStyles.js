@@ -3,18 +3,32 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: "#8f3d8f"
+        backgroundColor: "#fff"
     },
+    divCepView:{
+        width:'100%', 
+         marginTop:"3%", 
+         top:"15%",
+         alignItems:'center',
+       
+    },
+    txtCepView:{
+        fontSize:50,
+        fontFamily:'Pacifico-Regular',
+        color:'#FF0000',
+    },
+
     logo: {
         alignSelf: 'center',
-        width: '80%',
+        width: '60%',
         
     },
     ViewCard:{
         width: '100%',
         height: '60%',
         backgroundColor:'#f1f1f1',
-        marginBottom:'10%',
+        marginBottom:'5%',
+        bottom:'5%',
         borderTopStartRadius:20, 
         borderTopEndRadius:20
     },
