@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "../HomeScreen/HomeScreen";
 import LoginScreen from "../LoginScreen/LoginScreen";
 import Salvos from "../Salvos/Salvos";
+import Splash from "../Splash/Splash";
 const {Screen, Navigator} = createNativeStackNavigator();
 
 export function MainNavigator(){
@@ -10,6 +11,11 @@ export function MainNavigator(){
         <Navigator  screenOptions={{
           headerShown: false
         }}>
+           <Screen
+              name="Splash"
+              component={Splash} 
+              options={{headerShown:false}}      
+            />
            <Screen
               name="LoginScreen"
               component={LoginScreen} 

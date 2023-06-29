@@ -8,6 +8,7 @@ import {
   View,
   ActivityIndicator,
   Modal,
+  StatusBar
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/dist/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
@@ -17,6 +18,7 @@ import { useNavigation } from '@react-navigation/native';
 import realm, { getCadastro } from '../Database/realm';
 import uuid from 'react-native-uuid';
 import LottieView from "lottie-react-native";
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 const HomeScreen = () => {
@@ -79,7 +81,8 @@ const HomeScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <StatusBar animated={false} barStyle={'dark-content'}/>
       <View style={styles.body}>
         <View style={{ top: "6%", }}>
           <TextInput
@@ -182,7 +185,7 @@ const HomeScreen = () => {
       </View>
       <View>
       </View>
-    </View>
+    </SafeAreaView>
 
   );
 }

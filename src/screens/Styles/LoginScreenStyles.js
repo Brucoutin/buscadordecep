@@ -20,8 +20,7 @@ const styles = StyleSheet.create({
 
     logo: {
         alignSelf: 'center',
-        width: '80%',
-             
+        width: '80%',  
     },
     ViewCard:{
         width: '100%',
