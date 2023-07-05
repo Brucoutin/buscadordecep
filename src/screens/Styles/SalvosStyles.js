@@ -4,10 +4,26 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 60,
   },
+  containerModal:{
+    flex:1,
+  },
+  ViewLottie:{
+    marginTop:'30%',
+    top:'5%', 
+    alignItems:'center',
+  },
+  TextLottie:{
+    color: "#d68b00", 
+    fontSize:30, 
+    fontFamily:'SecularOne-Regular'
+  },
+  centeredModalLottie:{
+    flex:1,
+    backgroundColor:"#fff"
+  },
   propertyListContainer: {
     paddingHorizontal: 20,
   },
-
   card: {
     backgroundColor: '#fff',
     borderRadius: 5,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {  useEffect} from "react";
 import {
     StyleSheet,
     Text,
@@ -7,6 +7,7 @@ import {
     Image,
     View,
     Dimensions,
+    BackHandler,
 } from 'react-native';
 import localizacao from "../Assets/Jpg/localizacao.png"
 import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons';
@@ -19,6 +20,19 @@ const LoginScreen = () => {
     const navigation = useNavigation();
     const { width, height } = Dimensions.get('screen');
 
+      useEffect(()=>{
+        const backHandler = BackHandler.addEventListener(
+            "hardwareBackPress",
+            backAction
+          );
+          return () => backHandler.remove();
+    
+      }, []);
+      
+      const backAction = () => {
+        BackHandler.exitApp()
+        return true;
+      };
     return (
         <View style={styles.container}>
             <View style={styles.divCepView}> 

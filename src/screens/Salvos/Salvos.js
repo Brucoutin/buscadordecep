@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import {Text, View, Image, TouchableOpacity, FlatList, Modal, TextInput } from 'react-native'
+import { Text, View, Image, TouchableOpacity, FlatList, Modal, ActivityIndicator } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons';
-import realm, {getEndereco, } from '../Database/realm';
+import realm, { getEndereco, } from '../Database/realm';
 import CepController from '../Database/Controller/CepController';
 import styles from '../Styles/SalvosStyles';
 import LottieView from "lottie-react-native";
@@ -10,10 +10,9 @@ import LottieView from "lottie-react-native";
 function Salvos() {
   const navigation = useNavigation();
   const [openModal, setOpenModal] = useState(false)
-  const [lista, setLista] = useState(false)
-  const [searchText, setSearchText] = useState('')
+  const [loading, setLoading] = useState(false)
   const enderecos = getEndereco();
-  console.log (enderecos,' aqui')
+  console.log(enderecos, 'endereço')
 
   function deletar_id(id_cep) {
     console.log(id_cep)
@@ -23,15 +22,32 @@ function Salvos() {
       console.log(del_id)
     })
     setOpenModal(true)
+    setLoading(!loading)
     setTimeout(() => {
       setOpenModal(false);
-    }, 1000);
+      setLoading(false)
+    }, 1500);
   }
 
-
-  return (
-    <View style={styles.container}>
-          <FlatList
+  if (enderecos == "") {
+    return (
+      <View style={styles.containerModal}>
+        <View style={styles.ViewLottie}>
+          <Text style={styles.TextLottie}>
+            Não há cep cadastrado!
+          </Text>
+        </View>
+        <LottieView
+          source={require('../Assets/Svg/thinkwoman.json')}
+          loop
+          autoPlay
+          size="md" />
+      </View>
+    )
+  } else {
+    return (
+      <View style={styles.container}>
+        <FlatList
           contentContainerStyle={styles.propertyListContainer}
           data={enderecos}
           initialNumToRender={4}
@@ -49,28 +65,28 @@ function Salvos() {
                 </View>
                 <View style={styles.Footer}>
                   <TouchableOpacity onPress={() => deletar_id(item.id_cep)}>
-                  <MaterialCommunityIcons name="trash-can-outline" size={20} color="#FF0000" />
+                    <MaterialCommunityIcons name="trash-can-outline" size={20} color="#FF0000" />
                   </TouchableOpacity>
                 </View>
               </View>
             )
           }}
         />
-     
         <Modal
-            animationType="fade"
-            transparent={true}
-            visible={openModal}
-          >
-            <View style={styles.centeredModal} />
-            <LottieView
-              source={require('../Assets/Svg/loadingSalvos.json')}
-              loop
-              autoPlay
-              size="md" />
-          </Modal>
-    </View>
-  )
+          animationType="fade"
+          transparent={true}
+          visible={openModal}
+        >
+          <View style={styles.centeredModal} />
+          <LottieView
+            source={require('../Assets/Svg/loadingSalvos.json')}
+            loop
+            autoPlay
+            size="md" />
+        </Modal>
+      </View>
+    )
+  }
 }
 
 export default Salvos;
