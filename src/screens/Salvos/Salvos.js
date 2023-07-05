@@ -1,19 +1,17 @@
-import React, { useState } from 'react';
-import { Text, View, Image, TouchableOpacity, FlatList, Modal, ActivityIndicator } from 'react-native'
+import React, { useState, useEffect } from 'react';
+import { Text, View, Image, TouchableOpacity, FlatList, Modal, BackHandler } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 import realm, { getEndereco, } from '../Database/realm';
 import CepController from '../Database/Controller/CepController';
 import styles from '../Styles/SalvosStyles';
 import LottieView from "lottie-react-native";
-
 function Salvos() {
   const navigation = useNavigation();
   const [openModal, setOpenModal] = useState(false)
   const [loading, setLoading] = useState(false)
   const enderecos = getEndereco();
   console.log(enderecos, 'endereço')
-
   function deletar_id(id_cep) {
     console.log(id_cep)
     const del_id = CepController.getEndereco(`"${id_cep}"`)
@@ -28,6 +26,20 @@ function Salvos() {
       setLoading(false)
     }, 1500);
   }
+
+  useEffect(()=>{
+    const backHandler = BackHandler.addEventListener(
+        "hardwareBackPress",
+        backAction
+      );
+      return () => backHandler.remove();
+
+  }, []);
+  
+  const backAction = () => {
+    navigation.navigate("LoginScreen")
+    return true;
+  };
 
   if (enderecos == "") {
     return (

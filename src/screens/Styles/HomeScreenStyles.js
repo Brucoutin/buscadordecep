@@ -3,15 +3,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFF',
-    
   },
   body: {
-    marginTop: "3%",
-
+    marginTop: "5%",
+  },
+  Icon: {
+    alignSelf: 'flex-end',
+    bottom: "50%",
+    right: '7%',
   },
   txtNames: {
     left: '6%',
-    marginTop: '5%',
+    marginTop: '4%',
+    bottom:'2%',
     color: '#05811a',
     fontWeight: 'bold',
   },
@@ -22,42 +26,16 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingHorizontal: 10,
   },
-  Icon: {
-    alignSelf: 'flex-end',
-    bottom: "50%",
-    right: '7%'
-  },
-  nameContainer: {
-    alignItems: 'center',
-
-  },
-  name: {
-    fontSize: 30,
-    fontFamily: "SecularOne-Regular",
-    color: '#5fa8d2',
-  },
-  infoContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 12,
-    alignSelf: 'center',
-
-  },
   inputForm: {
     backgroundColor: "#e7e7e7",
     width: "90%",
+    height:'8%',
     borderRadius: 10,
     paddingHorizontal: 10,
-  },
-  infoLabel: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: 'black',
-    marginRight: 8,
-  },
-  infoText: {
-    fontSize: 16,
-    color: 'black'
+    alignSelf:'center',
+    justifyContent:'center',
+    alignItems:'center',
+    
   },
   btnMapa: {
     width: '70%',
@@ -65,7 +43,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#05811a',
     borderRadius: 50,
     alignSelf: 'center',
-    marginTop: '3%',
+    marginBottom: '2%',
+    bottom:'10%',
     justifyContent: 'center',
     alignItems: 'center',
     shadowOpacity: 0.37,
@@ -89,7 +68,19 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.84)',
   },
-
+  cardBody: {
+    marginBottom: '2%',
+    padding: 10,
+  },
+  card: {
+    backgroundColor: 'gray',
+    borderRadius: 5,
+    marginTop: '5%',
+    width:'90%',
+    alignSelf:'center',
+    height:'65%',
+   
+  },
 });
 
 export default styles;

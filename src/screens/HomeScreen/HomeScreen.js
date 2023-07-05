@@ -1,15 +1,6 @@
 
-import React, { useState } from 'react';
-import {
-  Alert,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-  ActivityIndicator,
-  Modal,
-  StatusBar
-} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Text, TextInput, TouchableOpacity, View, ActivityIndicator, Modal, StatusBar, KeyboardAvoidingView, BackHandler} from 'react-native';
 import AntDesign from 'react-native-vector-icons/dist/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 import styles from "../Styles/HomeScreenStyles";
@@ -19,8 +10,6 @@ import realm, { getCadastro } from '../Database/realm';
 import uuid from 'react-native-uuid';
 import LottieView from "lottie-react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
-
-
 const HomeScreen = () => {
   const navigation = useNavigation();
   const [searchCep, setSearchCep] = useState("")
@@ -42,16 +31,12 @@ const HomeScreen = () => {
       setComplemento(response.data.complemento)
       setCep(response.data.cep)
       console.log(response)
-
     }
     catch (error) {
       console.log(error)
     }
   }
-
-
   async function SaveCep() {
-
     try {
       realm.write(() => {
         const create = realm.create('cadastro_cep', {
@@ -73,18 +58,29 @@ const HomeScreen = () => {
         setLoading(false)
       }, 2100);
     }
-
     catch (error) {
       console.log(error, 'ERRO')
     }
-
   }
+  useEffect(()=>{
+    const backHandler = BackHandler.addEventListener(
+        "hardwareBackPress",
+        backAction
+      );
+      return () => backHandler.remove();
 
+  }, []);
+  
+  const backAction = () => {
+    navigation.navigate("LoginScreen")
+    return true;
+  };
+  
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar animated={false} barStyle={'dark-content'}/>
-      <View style={styles.body}>
-        <View style={{ top: "6%", }}>
+      <StatusBar animated={false} barStyle={'dark-content'} />
+      <KeyboardAvoidingView style={styles.body}>
+        <View style={{ top: "5%", }}>
           <TextInput
             placeholder='Digite o cep'
             value={searchCep}
@@ -95,72 +91,44 @@ const HomeScreen = () => {
             <AntDesign name="search1" size={30} color="black" />
           </TouchableOpacity>
         </View>
-        <Text style={styles.txtNames}>
-          Cep
-        </Text>
-        <View style={styles.infoContainer}>
-          <TextInput
-            value={cep}
-            onChangeText={(cep) => setCep(cep)}
-            placeholder='Cep'
-            style={styles.inputForm}
-          />
-        </View>
-        <Text style={styles.txtNames}>
-          Logradouro
-        </Text>
-        <View style={styles.infoContainer}>
-          <TextInput
-            value={logradouro}
-            onChangeText={(logradouro) => setLogradouro(logradouro)}
-            placeholder='Logradouro'
-            style={styles.inputForm}
-          />
-        </View>
-        <Text style={styles.txtNames}>
-          Localidade
-        </Text>
-        <View style={styles.infoContainer}>
-          <TextInput
-            value={localidade}
-            onChangeText={(localidade) => setLocalidade(localidade)}
-            placeholder='Localidade'
-            style={styles.inputForm}
-          />
-        </View>
-        <Text style={styles.txtNames}>
-          Bairro
-        </Text>
-        <View style={styles.infoContainer}>
-          <TextInput
-            value={bairro}
-            onChangeText={(bairro) => setBairro(bairro)}
-            placeholder='Bairro'
-            style={styles.inputForm}
-          />
-        </View>
-        <Text style={styles.txtNames}>
-          Estado
-        </Text>
-        <View style={styles.infoContainer}>
-          <TextInput
-            value={uf}
-            onChangeText={(uf) => setUf(uf)}
-            placeholder='Estado'
-            style={styles.inputForm}
-          />
-        </View>
-        <Text style={styles.txtNames}>
-          Complemento
-        </Text>
-        <View style={styles.infoContainer}>
-          <TextInput
-            value={complemento}
-            onChangeText={(complemento) => setComplemento(complemento)}
-            placeholder='Complemento'
-            style={styles.inputForm}
-          />
-        </View>
+          <View style={{marginTop:'4%', top:'2%'}}>
+            <Text style={styles.txtNames}>Cep</Text>
+            <Text style={styles.inputForm}
+              value={cep}
+              onChangeText={(cep) => setCep(cep)}>
+              {cep}
+            </Text>
+            <Text style={styles.txtNames}>Logradouro</Text>
+            <Text style={styles.inputForm}
+              value={logradouro}
+              onChangeText={(logradouro) => setLogradouro(logradouro)}>
+              {logradouro}
+            </Text>
+            <Text style={styles.txtNames}>Localidade</Text>
+            <Text style={styles.inputForm}
+              value={localidade}
+              onChangeText={(localidade) => setLocalidade(localidade)}>
+              {localidade}
+            </Text>
+            <Text style={styles.txtNames}>Estado</Text>
+            <Text style={styles.inputForm}
+              value={uf}
+              onChangeText={(uf) => setUf(uf)}>
+              {uf}
+            </Text>
+            <Text style={styles.txtNames}>Bairro</Text>
+            <Text style={styles.inputForm}
+              value={bairro}
+              onChangeText={(bairro) => setBairro(bairro)}>
+              {bairro}
+            </Text>
+            <Text style={styles.txtNames}>Complemento</Text>
+            <Text style={styles.inputForm}
+              value={complemento}
+              onChangeText={(complemento) => setComplemento(complemento)}>
+              {complemento}
+            </Text>
+          </View>
         <TouchableOpacity style={styles.btnMapa} onPress={() => SaveCep()}>
           {loading && <ActivityIndicator size={20} color={"#fff"} />}
           <Text style={styles.txtBtn}>
@@ -182,13 +150,10 @@ const HomeScreen = () => {
             bottom={'20%'}
           />
         </Modal>
-      </View>
+      </KeyboardAvoidingView>
       <View>
       </View>
     </SafeAreaView>
-
   );
 }
-
-
 export default HomeScreen;

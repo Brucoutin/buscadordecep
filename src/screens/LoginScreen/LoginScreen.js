@@ -1,21 +1,10 @@
 import React, {  useEffect} from "react";
-import {
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    Image,
-    View,
-    Dimensions,
-    BackHandler,
-} from 'react-native';
+import {Text, TouchableOpacity, Image, View, Dimensions, BackHandler,} from 'react-native';
 import localizacao from "../Assets/Jpg/localizacao.png"
 import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 import { useNavigation } from '@react-navigation/native';
 import styles from "../Styles/LoginScreenStyles";
-
-
 const LoginScreen = () => {
     const navigation = useNavigation();
     const { width, height } = Dimensions.get('screen');
@@ -64,9 +53,7 @@ const LoginScreen = () => {
                 </View>
             </View>
         </View>
-
     )
-
 }
 
 export default LoginScreen;
